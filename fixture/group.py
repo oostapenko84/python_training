@@ -27,7 +27,7 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
-        self.app.return_to_groups_page()
+        self.return_to_groups_page()
 
     def return_to_groups_page(self):
         wd = self.app.wd
