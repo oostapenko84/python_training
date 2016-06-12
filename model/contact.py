@@ -2,8 +2,8 @@ __author__ = 'olga.ostapenko'
 
 
 class Contact:
-
-    def __init__(self, First_Name, Middle_Name, Last_Name, Company_Name, Address, Home_Phone, Mobile_Phone, Work_Phone, Email, Homepage, Birthday, Anniversary, Secondary_Address):
+    def __init__(self, First_Name, Middle_Name, Last_Name, Company_Name, Address, Home_Phone, Mobile_Phone, Work_Phone,
+                 Email, Homepage, Birthday, Anniversary, Secondary_Address):
         self.First_Name = First_Name
         self.Middle_Name = Middle_Name
         self.Last_Name = Last_Name
