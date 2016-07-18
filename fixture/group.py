@@ -1,4 +1,4 @@
-__author__ = 'olga.ostapenko'
+from model.group import Group
 
 
 class GroupHelper:
@@ -28,6 +28,7 @@ class GroupHelper:
         # submit group creation
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
+        self.group_cache = None
 
     def modify_first_group(self, group):
         wd = self.app.wd
@@ -48,6 +49,7 @@ class GroupHelper:
         # submit edition
         wd.find_element_by_name("update").click()
         self.open_groups_page()
+        self.group_cache = None
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -57,8 +59,23 @@ class GroupHelper:
         # submit deletion
         wd.find_element_by_name("delete").click()
         self.open_groups_page()
+        self.group_cache = None
 
     def count(self):
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    group_cache = None
+
+    def get_group_list(self):
+        if self.group_cache is None:
+            wd = self.app.wd
+            self.open_groups_page()
+            self.group_cache = []
+            for element in wd.find_elements_by_css_selector('span.group'):
+                text = element.text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(name=text, id=id))
+        return list(self.group_cache)
+        # return [Group(name=e.text, id=e.id) for e in wd.find_elements_by_css_selector('span.group') ]
